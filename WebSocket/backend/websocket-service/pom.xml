@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.malinowski.jee7</groupId> 
+	<artifactId>websocket-service</artifactId>
+	<version>DYNAMIC-SNAPSHOT</version>
+	<packaging>ear</packaging>
+	<name>JEE7 - Examples - WebSocket - Backend - EAR</name>
+
+	<parent>
+		<groupId>com.malinowski.jee7</groupId> 
+		<artifactId>backend</artifactId>
+		<version>DYNAMIC-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId> 
+			<artifactId>websocket-service-ejb</artifactId>
+			<version>DYNAMIC-SNAPSHOT</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId> 
+			<artifactId>websocket-service-war</artifactId>
+			<version>DYNAMIC-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>websocket-service</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<version>6</version>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<modules>
+						<ejbModule>
+							<groupId>${project.groupId}</groupId> 
+							<artifactId>websocket-service-ejb</artifactId>
+							<bundleFileName>websocket-service-ejb.jar</bundleFileName>
+						</ejbModule>
+						<webModule>
+							<groupId>${project.groupId}</groupId> 
+							<artifactId>websocket-service-war</artifactId>
+							<bundleFileName>websocket-service-war.war</bundleFileName>
+							<contextRoot>/websocket</contextRoot>
+						</webModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
